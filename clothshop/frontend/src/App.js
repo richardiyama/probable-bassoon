@@ -1,6 +1,9 @@
 import React from 'react';
-import data from './data'; 
+import {BrowserRouter,Route, Link} from 'react-router-dom';
+import ProductScreen from './screens/ProductScreen';
+import HomeScreen from './screens/HomeScreen';
 import './index.css';
+
 
 function App() {
     const openMenu = () =>{
@@ -11,11 +14,13 @@ function App() {
         document.querySelector(".sidebar").classList.remove('open');
     }
     return (
-      <div class="grid-container">
+      <BrowserRouter>
+      <div className="grid-container">
         <header className="header">
           <div className="brand">
             <button onClick={openMenu}>&#9776;</button>
-            <a href="index.html">probable bassoon</a>
+            <Link to="/">probable bassoon</Link>
+          
           </div>
           <div className="header-links">
             <a href="cart.html">Cart</a>
@@ -38,40 +43,14 @@ function App() {
         </aside>
         <main className="main">
           <div className="content">
-        <ul className="products">
-        {
-                         data.products.map(product =>
-                <div className="product">
-                    
-                        <li>
-                       
-                        <img
-                        className="product-image"
-                        src={product.image}
-                        alt="product"
-                      />
-                      <div className="product-name">
-                        <a href="product.html">{product.name}</a>
-                      </div>
-                      <div className="product-brand">{product.brand}</div>
-                      <div className="product-price">${product.price}</div>
-                      <div className="product-rating">{product.rating} stars ({product.numReviews}) Reviews</div>
-                    </li>
-                   
-                    </div>
-                         
-
-                  
-                         
-                         )
-                        }         
-
-             
-        </ul>
+            <Route path="/product/:id" component={ProductScreen}/>
+            <Route  path="/" exact={true} component={HomeScreen}/>
+       
           </div>
         </main>
         <footer className="footer">All right reserved.</footer>
       </div>
+      </BrowserRouter>
     );
 }
 export default App;
