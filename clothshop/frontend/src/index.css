@@ -208,12 +208,15 @@ html{
     flex-direction: column;
 }
 
+
 .button{
     padding: 1rem;
     border: .1rem #808080 solid;
     cursor: pointer;
     border-radius: 0.5rem;
     background-color: #f0c040;
+    font-size: 1.6rem;
+    
 }
 
 .button:hover{
@@ -277,4 +280,8 @@ html{
     flex: 1 1;
     font-size: 2.5rem;
     text-align: right;
+}
+
+.full-width{
+    width: 100%;
 }
