@@ -30,6 +30,7 @@ html{
  .header-links a{
      color: #ffffff;
      text-decoration: none;
+     padding: 0.5rem;
  }
  
  .header-links a:hover{
