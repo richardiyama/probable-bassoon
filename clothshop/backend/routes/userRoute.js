@@ -1,22 +1,23 @@
 import express from 'express';
 import User from '../models/userModel';
+import { getToken } from '../util';
 
 
 const router = express.Router();
 
-router.post("/api/sigin" , async(req,res)=>{
-   const siginUser = await User.findOne({
+router.post('/signin' , async(req,res)=>{
+   const signinUser = await User.findOne({
        email: req.body.email,
        password:req.body.password
    });
 
-   if(siginUser){
+   if(signinUser){
        res.send({
-           _id: siginUser.id,
-           name:siginUser.name,
-           email: siginUser.email,
-           isAdmin:siginUser.isAdmin,
-           token:getToken(user) 
+           _id: signinUser.id,
+           name:signinUser.name,
+           email: signinUser.email,
+           isAdmin:signinUser.isAdmin,
+           token:getToken(signinUser) 
        })
 
    }else{
@@ -34,7 +35,7 @@ router.get("/createadmin", async(req,res)=>{
         });
     
         const newUser = await user.save();
-        res.send(user);
+        res.send(newUser);
 
     } catch (error) {
         res.send({msg: error.message});
